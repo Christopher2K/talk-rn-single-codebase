@@ -143,3 +143,35 @@ layout: custom-two-cols
 </div>
 
 </span>
+
+---
+
+```yaml
+layout: custom-two-cols
+transition: fade
+```
+
+::header::
+
+# What does strategy 2 looks like?
+
+Inside Concentration, our case study
+
+::left::
+
+## Apps
+
+- All applications are under `apps`.
+- Each application is independant from others
+
+## Libraries
+
+- Libraries are shreable assets
+  - Assets (images, fonts)
+  - Configuration files (prettier, eslint)
+  - UI components
+  - Domain logic
+
+::right::
+
+<img src="/concentration-folders.png" class="h-[400px] w-auto" />
