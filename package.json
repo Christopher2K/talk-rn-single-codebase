@@ -1,5 +1,5 @@
 {
-  "name": "react-native-single-codebase",
+  "name": "talk-rn-single-codebase",
   "type": "module",
   "private": true,
   "scripts": {

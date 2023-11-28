@@ -1,4 +1,6 @@
-# Welcome to [Slidev](https://github.com/slidevjs/slidev)!
+# From React-Native to React-\*
+
+Powered by [Slidev](https://sli.dev/).
 
 To start the slide show:
 
