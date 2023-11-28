@@ -24,7 +24,7 @@ const animation: MotionVariants = {
       <div class="flex-1 flex flex-col justify-center items-start text-center">
         <slot />
       </div>
-      <div class="flex-1" v-motion>
+      <div class="flex-1 max-w-[50%]" v-motion>
         <img v-motion="animation" class="absolute" :src="props.image" />
       </div>
     </div>
