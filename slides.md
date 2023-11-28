@@ -44,14 +44,14 @@ Cross-platform pomodoro<span class="font-900 color-red-900">\*</span> timer
 
 ```yaml
 layout: custom-two-cols
-clicks: 3
+transition: fade
 ```
 
 ::header::
 
 # Two code-share strategies
 
-👎 Strategy one: one app, same entry point, `n`<span class="font-900 color-red-900">\*</span> builds process
+👎 Strategy one: one app, same entrypoint, `n`<span class="font-900 color-red-900">\*</span> builds process
 
 ::footer::
 
@@ -86,10 +86,60 @@ clicks: 3
 
 - 🫨 Code is harder to read.
 - 🚨 Introducing new libs is more error prone.
-- 😵‍💫 Platform specifics semantics or specifics are harder to implement.
+- 😵‍💫 Platform specifics are harder to implement.
 
 </div>
 
 </span>
 
 ---
+
+```yaml
+layout: custom-two-cols
+```
+
+::header::
+
+# Two code-share strategies
+
+🚀 Strategy two: `n`<span class="font-900 color-red-900">\*</span> apps, `n` entrypoints, as much as **packages** as you need
+
+::footer::
+
+<p class="font-200">
+  <span class="color-red-900 font-900">*</span> : `n` being the number of platforms supported
+</p>
+
+::left::
+
+<NAppsStrategy />
+
+::right::
+
+<span v-click="1">
+
+## What I like
+
+<div class="mb-5">
+
+- 👍 Easy to work on platform specifics
+- ♻️ Builds are easier to manage
+- 🫂 One app does not impact another
+- 🪜 Changes are incremental
+
+</div>
+
+</span>
+
+<span v-click="2">
+
+## Where's the catch
+
+<div>
+
+- 🐢 Requires more planning than strategy 1.
+- 📦 CI/CD is hard to figure out.
+
+</div>
+
+</span>
