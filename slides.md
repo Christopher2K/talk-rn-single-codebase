@@ -309,9 +309,22 @@ transition: slide-left
 
 ::header::
 
-# How does you use them?
+# And the state management ?
 
-Wanna see state management ?
+Powered by redux toolkit!
+
+---
+
+```yaml
+layout: custom-two-cols
+transition: slide-left
+```
+
+::header::
+
+# Is this reusable?
+
+YES, IT IS! 🔥
 
 ::left::
 
@@ -361,3 +374,21 @@ export function setupStore(preloadedState?: S) {
   return store;
 }
 ```
+
+---
+
+```yaml
+layout: statement
+transition: slide-left
+```
+
+# Any questions?
+
+---
+
+```yaml
+layout: statement
+transition: slide-left
+```
+
+# Thanks ✌️
