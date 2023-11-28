@@ -11,7 +11,7 @@
       <slot name="header" />
     </div>
 
-    <div class="flex flex-row justify-start items-start w-full flex-1 gap-0">
+    <div class="flex flex-row justify-start items-start w-full flex-1 gap-2">
       <div v-if="$slots.left" class="flex-1">
         <slot name="left" />
       </div>

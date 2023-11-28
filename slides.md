@@ -2,6 +2,7 @@
 theme: apple-basic
 layout: intro
 transition: slide-left
+colorSchema: dark
 ```
 
 # From React-Native to React-\*
@@ -87,6 +88,7 @@ transition: fade
 - 🫨 Code is harder to read.
 - 🚨 Introducing new libs is more error prone.
 - 😵‍💫 Platform specifics are harder to implement.
+- 🤢 Migrating is a pain because you have to do EVERYTHING at once.
 
 </div>
 
@@ -96,6 +98,7 @@ transition: fade
 
 ```yaml
 layout: custom-two-cols
+transition: slide-up
 ```
 
 ::header::
@@ -148,7 +151,7 @@ layout: custom-two-cols
 
 ```yaml
 layout: custom-two-cols
-transition: fade
+transition: slide-left
 ```
 
 ::header::
@@ -166,12 +169,195 @@ Inside Concentration, our case study
 
 ## Libraries
 
-- Libraries are shreable assets
-  - Assets (images, fonts)
-  - Configuration files (prettier, eslint)
-  - UI components
-  - Domain logic
+- Sharable on any platform
+- Assets (images, fonts)
+- Configuration files (prettier, eslint)
+- UI components
+- Domain logic
 
 ::right::
 
 <img src="/concentration-folders.png" class="h-[400px] w-auto" />
+
+---
+
+```yaml
+layout: custom-two-cols
+transition: slide-left
+```
+
+::header::
+
+# The UI lib
+
+Focus on `libs/ui`, my design system implementation
+
+::left::
+
+- `components` are low level UI pieces.
+- `views` are group of low level UI pieces.
+- `controller` are views hydrated with domain.
+- Everything is cross-platform tested
+
+::right::
+
+<img src="/concentration-ui-lib.png" class="h-[400px] w-auto" />
+
+---
+
+```yaml
+layout: custom-two-cols
+transition: slide-left
+```
+
+::header::
+
+# The Shared lib
+
+Focus on `libs/shared`, the package keeping the non-UI common stuff
+
+::left::
+
+- Responsible for the core domain logic
+- Platform-agnostic
+- `services` keeps the **type definitions** of services needed in both apps
+- `state` keep 80% of the state management (Redux)
+
+::right::
+
+<img src="/concentration-shared-lib.png" class="h-[400px] w-auto" />
+
+---
+
+```yaml
+layout: custom-two-cols
+transition: slide-left
+```
+
+::header::
+
+# How do you use the UI stuff?
+
+Super simple.
+
+::left::
+
+## `mobile`
+
+```tsx
+<ScreenContent withBottomNavBarOffset>
+  <YStack
+    justifyContent="flex-start"
+    alignItems="flex-start"
+    w="$full"
+    flex={1}
+    pb="$l"
+  >
+    <TimerTitleController />
+    <TimerDashboardController />
+    <StartPomodoroController />
+    <StopPomodoroController />
+    {condition && <MobileSpecificStuff />}
+  </YStack>
+</ScreenContent>
+```
+
+::right::
+
+## `desktop`
+
+```tsx
+<YStack w="$full" position="relative">
+  <TimerTitleController />
+  <StartPomodoroController />
+  <TimerDashboardController />
+  <StopPomodoroController />
+</YStack>
+```
+
+---
+
+```yaml
+layout: custom-two-cols
+transition: slide-left
+```
+
+::header::
+
+# How does it look like?
+
+Pretty cool.
+
+::left::
+
+## `mobile`
+
+Screenshot
+
+::right::
+
+## `desktop`
+
+Screenshot
+
+---
+
+```yaml
+layout: custom-two-cols
+transition: slide-left
+```
+
+::header::
+
+# How does you use them?
+
+Wanna see state management ?
+
+::left::
+
+## `mobile`
+
+```ts
+export function setupStore(preloadedState?: S) {
+  const listenerMiddleware = buildListener({
+    analyticsService: AnalyticsService,
+    notificationsService: NotificationsService,
+  });
+
+  startGlobalListeners(listenerMiddleware);
+  startSubscriptionListeners(listenerMiddleware);
+
+  const store = buildStore({
+    reducer,
+    preloadedState,
+    listenerMiddleware,
+    middlewares,
+  });
+
+  return store;
+}
+```
+
+::right::
+
+## `desktop`
+
+```ts
+export function setupStore(preloadedState?: S) {
+  const listenerMiddleware = buildListener({
+    notificationsService: NotificationsService,
+    events: EventsService,
+  });
+
+  startTauriEventListeners(listenerMiddleware);
+
+  const store = buildStore({
+    reducer,
+    preloadedState,
+    listenerMiddleware,
+    middlewares,
+  });
+
+  return store;
+}
+```
