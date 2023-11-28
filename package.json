@@ -12,5 +12,6 @@
     "@slidev/theme-apple-basic": "~0.20.0",
     "@slidev/theme-default": "latest",
     "@slidev/theme-seriph": "latest"
-  }
+  },
+  "packageManager": "yarn@4.0.2"
 }
