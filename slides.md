@@ -3,6 +3,7 @@ theme: apple-basic
 layout: intro
 transition: slide-left
 colorSchema: dark
+title: From React-Native to React-\*
 ```
 
 # From React-Native to React-\*
@@ -17,6 +18,7 @@ Introduction to a strategy to `write Once, deploy Everywhere`
     Senior Frontend Engineer @ Maple, Toronto, ON
   </p>
 </div>
+
 
 ---
 
