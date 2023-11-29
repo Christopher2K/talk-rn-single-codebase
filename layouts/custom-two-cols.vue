@@ -2,7 +2,7 @@
 
 <template>
   <div
-    class="slidev-layout default flex flex-col justify-start items-start gap-4"
+    class="slidev-layout default flex flex-col justify-start items-start gap-2"
   >
     <div
       v-if="$slots.header"

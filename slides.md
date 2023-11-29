@@ -44,15 +44,23 @@ Cross-platform pomodoro<span class="font-900 color-red-900">\*</span> timer
 ---
 
 ```yaml
+layout: statement
+```
+
+# Code-share strategies
+
+---
+
+```yaml
 layout: custom-two-cols
-transition: fade
+transition: slide-left
 ```
 
 ::header::
 
-# Two code-share strategies
+# Strategy #1: One app, `n`<span class="font-900 color-red-900">\*</span> build process
 
-👎 Strategy one: one app, same entrypoint, `n`<span class="font-900 color-red-900">\*</span> builds process
+👎 My least favorite, but the simplest approach
 
 ::footer::
 
@@ -103,9 +111,9 @@ transition: slide-up
 
 ::header::
 
-# Two code-share strategies
+# Strategy #2: `n`<span class="font-900 color-red-900">\*</span> apps, `*` packages
 
-🚀 Strategy two: `n`<span class="font-900 color-red-900">\*</span> apps, `n` entrypoints, as much as **packages** as you need
+🚀 Keep your apps separated, but modularize as much as you can
 
 ::footer::
 
@@ -150,15 +158,21 @@ transition: slide-up
 ---
 
 ```yaml
+layout: statement
+```
+
+# Let's explore strategy 2
+
+---
+
+```yaml
 layout: custom-two-cols
 transition: slide-left
 ```
 
 ::header::
 
-# What does strategy 2 looks like?
-
-Inside Concentration, our case study
+# Project architecture
 
 ::left::
 
@@ -207,7 +221,7 @@ Focus on `libs/ui`, my design system implementation
 
 ```yaml
 layout: custom-two-cols
-transition: slide-left
+transition: slide-up
 ```
 
 ::header::
@@ -230,21 +244,72 @@ Focus on `libs/shared`, the package keeping the non-UI common stuff
 ---
 
 ```yaml
+layout: statement
+```
+
+# Real code and UI examples
+
+---
+
+```yaml
 layout: custom-two-cols
 transition: slide-left
 ```
 
 ::header::
 
-# How do you use the UI stuff?
+# Dashboard UI
 
-Super simple.
+📱 Mobile version
+
+::left::
+
+<img src="/timer-ui-mobile-1.png" class="h-[480px]" style='margin-top: -60px;margin-left: 100px'/>
+
+::right::
+
+<img src="/timer-ui-mobile-2.png" class="h-[480px]" style='margin-top: -60px; margin-left: 100px;'/>
+
+---
+
+```yaml
+layout: custom-two-cols
+transition: slide-left
+```
+
+::header::
+
+# Dashboard UI
+
+🖥️ Desktop version
+
+::left::
+
+<img src="/timer-ui-desktop-1.png" class="w-auto" style='margin-top: -40px;' />
+
+::right::
+
+<img src="/timer-ui-desktop-2.png" class="w-auto" style='margin-top: -40px;' />
+
+---
+
+```yaml
+layout: custom-two-cols
+transition: slide-left
+clicks: 1
+```
+
+::header::
+
+# Code behind this UI
+
+Super simple, most of the things are from `libs/ui` folder.
 
 ::left::
 
 ## `mobile`
 
-```tsx
+```tsx {all|9-12} {at:0}
 <ScreenContent withBottomNavBarOffset>
   <YStack
     justifyContent="flex-start"
@@ -266,11 +331,11 @@ Super simple.
 
 ## `desktop`
 
-```tsx
+```tsx {all|2-5} {at:0}
 <YStack w="$full" position="relative">
   <TimerTitleController />
-  <StartPomodoroController />
   <TimerDashboardController />
+  <StartPomodoroController />
   <StopPomodoroController />
 </YStack>
 ```
@@ -284,40 +349,42 @@ transition: slide-left
 
 ::header::
 
-# How does it look like?
+# What about state management ?
 
-Pretty cool.
+Powered by redux toolkit! From `libs/shared` package
 
-::left::
+<div class="flex flex-col justify-center items-center w-full">
 
-## `mobile`
+```ts
+// Import all reducers
 
-Screenshot
-
-::right::
-
-## `desktop`
-
-Screenshot
-
----
-
-```yaml
-layout: custom-two-cols
-transition: slide-left
+export function buildStore<ExternalState = unknown>(args: {
+  reducer: Reducer<AppState & ExternalState>;
+  listenerMiddleware: ListenerMiddlewareType<ExternalState>;
+  preloadedState?: PreloadedState<
+    CombinedState<NoInfer<ExternalState & CommonAppState>>
+  >;
+  middlewares?: Middleware[];
+}) {
+  return configureStore({
+    reducer: args.reducer,
+    preloadedState: args.preloadedState,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware()
+        .prepend(args.listenerMiddleware.middleware)
+        .concat(args.middlewares ?? []),
+  });
+}
 ```
 
-::header::
-
-# And the state management ?
-
-Powered by redux toolkit!
+</div>
 
 ---
 
 ```yaml
 layout: custom-two-cols
-transition: slide-left
+transition: slide-up
+clicks: 2
 ```
 
 ::header::
@@ -330,7 +397,7 @@ YES, IT IS! 🔥
 
 ## `mobile`
 
-```ts
+```ts {all|3,7,8} {at: 0}
 export function setupStore(preloadedState?: S) {
   const listenerMiddleware = buildListener({
     analyticsService: AnalyticsService,
@@ -355,7 +422,7 @@ export function setupStore(preloadedState?: S) {
 
 ## `desktop`
 
-```ts
+```ts {all|4,7} {at: 0}
 export function setupStore(preloadedState?: S) {
   const listenerMiddleware = buildListener({
     notificationsService: NotificationsService,
@@ -379,16 +446,19 @@ export function setupStore(preloadedState?: S) {
 
 ```yaml
 layout: statement
-transition: slide-left
+transition: slide-up
 ```
 
 # Any questions?
+
+<br />
+I'm also available on Slack DMs!
 
 ---
 
 ```yaml
 layout: statement
-transition: slide-left
+transition: slide-up
 ```
 
 # Thanks ✌️
