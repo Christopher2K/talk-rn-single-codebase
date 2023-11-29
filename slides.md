@@ -19,6 +19,10 @@ Introduction to a strategy to `write Once, deploy Everywhere`
   </p>
 </div>
 
+<!--
+* Introduce the talk
+* Say that nothing has been decided yet
+-->
 
 ---
 
