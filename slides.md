@@ -1,7 +1,7 @@
 ```yaml
 theme: apple-basic
 layout: intro
-transition: slide-left
+transition: slide-up
 colorSchema: dark
 title: From React-Native to React-\*
 ```
@@ -11,25 +11,22 @@ title: From React-Native to React-\*
 Introduction to a strategy to `write Once, deploy Everywhere`
 
 <div class="absolute bottom-0 bottom-5">
-  <p>
-    Christopher N. Katoyi Kaba
-  </p>
-  <p class="font-200">
-    Senior Frontend Engineer @ Maple, Toronto, ON
-  </p>
+  Christopher N. Katoyi Kaba <br/>
+  Senior Frontend Engineer @ Maple
 </div>
 
 <!--
-* Introduce the talk
+* Introduce the thing
 * Say that nothing has been decided yet
+* This is supposed to be a quick vybecheck
 -->
 
 ---
 
 ```yaml
 layout: custom-image-right
-image: mockup-1.png
-transition: slide-up
+image: /mockup-1.png
+transition: slide-left
 ```
 
 # Concentration
@@ -47,13 +44,26 @@ Cross-platform pomodoro<span class="font-900 color-red-900">\*</span> timer
     <span class="color-red-900 font-900">*</span> : A pomodoro timer orchestrates 25-minute work sessions with 5-minute breaks.  </p>
 </div>
 
+<!--
+* Give a back story to the concentration app!!!
+* Say that this will be used as a demonstration material
+* Present the key points
+* The app is running in production with 0 bugs
+-->
+
 ---
 
 ```yaml
 layout: statement
+transition: slide-left
+class: bg-[#145252]
 ```
 
 # Code-share strategies
+
+<!--
+* Both strategies were applied to my use case which was migrating from native to desktop / web
+-->
 
 ---
 
@@ -64,15 +74,9 @@ transition: slide-left
 
 ::header::
 
-# Strategy #1: One app, `n`<span class="font-900 color-red-900">\*</span> build process
+# Strategy #1: One project fits <span class="color-[#1F7A7A]">many</span> platforms
 
 👎 My least favorite, but the simplest approach
-
-::footer::
-
-<p class="font-200">
-  <span class="color-red-900 font-900">*</span> : `n` being the number of platforms supported
-</p>
 
 ::left::
 
@@ -108,24 +112,22 @@ transition: slide-left
 
 </span>
 
+<!--
+Talk about the fact that one app is having multiple build processes
+-->
+
 ---
 
 ```yaml
 layout: custom-two-cols
-transition: slide-up
+transition: slide-left
 ```
 
 ::header::
 
-# Strategy #2: `n`<span class="font-900 color-red-900">\*</span> apps, `*` packages
+# Strategy #2: One <span class="color-[#1F7A7A]">sub-project</span> per platform
 
-🚀 Keep your apps separated, but modularize as much as you can
-
-::footer::
-
-<p class="font-200">
-  <span class="color-red-900 font-900">*</span> : `n` being the number of platforms supported
-</p>
+🚀 Keep your apps separated, and modularize as much as you can in independant packages
 
 ::left::
 
@@ -139,10 +141,10 @@ transition: slide-up
 
 <div class="mb-5">
 
-- 👍 Easy to work on platform specifics
-- ♻️ Builds are easier to manage
-- 🫂 One app does not impact another
-- 🪜 Changes are incremental
+- 👍 Easy to work on platform specifics.
+- ♻️ Builds are easier to manage.
+- 🫂 One app does not impact another.
+- 🪜 Changes are incremental.
 
 </div>
 
@@ -161,13 +163,23 @@ transition: slide-up
 
 </span>
 
+<!--
+Talk about this approach is using separate packages
+-->
+
 ---
 
 ```yaml
 layout: statement
+transition: slide-left
+class: bg-[#145252]
 ```
 
-# Let's explore strategy 2
+# Let's explore Strategy #2 !
+
+<!--
+The strategy used to develop my app
+-->
 
 ---
 
@@ -199,6 +211,15 @@ transition: slide-left
 
 <img src="/concentration-folders.png" class="h-[400px] w-auto" />
 
+<!--
+Simple architecture
+- 2 focus
+  - Apps folder
+  - Libraries folder
+- What does the app folder contains?
+- What does the libs folder contains?
+-->
+
 ---
 
 ```yaml
@@ -223,11 +244,15 @@ Focus on `libs/ui`, my design system implementation
 
 <img src="/concentration-ui-lib.png" class="h-[400px] w-auto" />
 
+<!--
+Go through all the keypoints
+-->
+
 ---
 
 ```yaml
 layout: custom-two-cols
-transition: slide-up
+transition: slide-left
 ```
 
 ::header::
@@ -247,13 +272,26 @@ Focus on `libs/shared`, the package keeping the non-UI common stuff
 
 <img src="/concentration-shared-lib.png" class="h-[400px] w-auto" />
 
+<!--
+Say that this contains everything else!
+- Utils
+- Services
+- States
+-->
+
 ---
 
 ```yaml
 layout: statement
+transition: slide-left
+class: bg-[#145252]
 ```
 
 # Real code and UI examples
+
+<!--
+Joke: I may have already lost product people so here are some visuals
+-->
 
 ---
 
@@ -266,7 +304,7 @@ transition: slide-left
 
 # Dashboard UI
 
-📱 Mobile version
+Mobile version
 
 ::left::
 
@@ -287,7 +325,7 @@ transition: slide-left
 
 # Dashboard UI
 
-🖥️ Desktop version
+Desktop version
 
 ::left::
 
@@ -296,6 +334,10 @@ transition: slide-left
 ::right::
 
 <img src="/timer-ui-desktop-2.png" class="w-auto" style='margin-top: -40px;' />
+
+<!--
+Say that the navigation pattern are different than mobile, the informations component stays the same
+-->
 
 ---
 
@@ -389,7 +431,7 @@ export function buildStore<ExternalState = unknown>(args: {
 
 ```yaml
 layout: custom-two-cols
-transition: slide-up
+transition: slide-left
 clicks: 2
 ```
 
@@ -453,6 +495,7 @@ export function setupStore(preloadedState?: S) {
 ```yaml
 layout: statement
 transition: slide-up
+class: bg-[#145252]
 ```
 
 # Any questions?
@@ -464,7 +507,6 @@ I'm also available on Slack DMs!
 
 ```yaml
 layout: statement
-transition: slide-up
 ```
 
 # Thanks ✌️
