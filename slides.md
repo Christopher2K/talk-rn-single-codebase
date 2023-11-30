@@ -388,6 +388,10 @@ Super simple, most of the things are from `libs/ui` folder.
 </YStack>
 ```
 
+<!--
+Hit them with the write once deploy everywhere
+-->
+
 ---
 
 ```yaml
@@ -432,7 +436,7 @@ export function buildStore<ExternalState = unknown>(args: {
 ```yaml
 layout: custom-two-cols
 transition: slide-left
-clicks: 2
+clicks: 1
 ```
 
 ::header::
